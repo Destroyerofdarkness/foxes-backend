@@ -2,11 +2,12 @@ const {Schema, model} = require("mongoose")
 
 const foxSchema = new Schema({
     name:{
+        unique:true,
         type:String,
-        required:true,
-        unique:true
+        required:true
     },
     img:{
+        unique:true,
         type:String,
         required:true
     },

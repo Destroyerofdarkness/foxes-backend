@@ -7,4 +7,6 @@ router.get("/all", controller.get_foxes);
 
 router.put("/put", controller.update_vote_fox)
 
+router.get("/statistics", controller.get_fox_statistics)
+
 module.exports = router

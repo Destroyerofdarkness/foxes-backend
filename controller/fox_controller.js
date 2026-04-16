@@ -13,7 +13,7 @@ const make_fox = async(req,res)=>{
 
 const get_foxes = async(req,res)=>{
     try {
-        const foxes = await Fox.find();
+        const foxes = await Fox.aggregate([{$sample:{size:2}}]);
         res.status(200).json({foxes, success:true, message: "Succesfully got all the foxes"})
     } catch (err) {
         console.log(err);
@@ -32,4 +32,15 @@ const update_vote_fox = async(req,res)=>{
     }
 }
 
-module.exports = {make_fox, get_foxes, update_vote_fox}
+const get_fox_statistics = async(req,res)=>{
+    try {
+        const foxes = await   Fox.find().sort({votes:-1})
+        res.status(200).json({foxes, success:true,message: "Got all the foxes in votes order"})
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({err, success:false, message:"Couldn't get the foxes from the database"})
+    }
+  
+}
+
+module.exports = {make_fox, get_foxes, update_vote_fox, get_fox_statistics}
