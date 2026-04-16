@@ -26,6 +26,11 @@ foxSchema.statics.make = async(info)=>{
     return;
 }
 
+foxSchema.statics.vote = async (info) => {
+    console.log(info);
+    await Fox.findByIdAndUpdate(info.id, { $inc: { votes: 1 } });
+};
+
 const Fox = model("foxes", foxSchema);
 
 module.exports = Fox

@@ -21,4 +21,15 @@ const get_foxes = async(req,res)=>{
     }
 }
 
-module.exports = {make_fox, get_foxes}
+const update_vote_fox = async(req,res)=>{
+    const {BODY} = req.body
+    try {
+        await Fox.vote(BODY);
+        res.status(201).json({success:true, message: "Succesfully voted for the fox"})
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({err,success:false, message:"Unable to vote for the fox because of error"})
+    }
+}
+
+module.exports = {make_fox, get_foxes, update_vote_fox}
