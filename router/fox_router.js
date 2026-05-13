@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const controller = require("../controller/fox_controller")
 
+//All the routes for getting statistics, updating fox votes and post route which creates a fox.
 router.post("/post",controller.make_fox);
 
 router.get("/all", controller.get_foxes);
